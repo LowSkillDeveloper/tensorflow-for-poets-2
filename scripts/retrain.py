@@ -270,7 +270,7 @@ def create_model_graph(model_info):
   """
   with tf.Graph().as_default() as graph:
     model_path = os.path.join(FLAGS.model_dir, model_info['model_file_name'])
-    with gfile.GFile(model_path, 'rb') as f:
+    with tf.io.gfile.GFile(model_path, 'rb') as f:
       graph_def = tf.compat.v1.GraphDef()
       graph_def.ParseFromString(f.read())
       bottleneck_tensor, resized_input_tensor = (tf.import_graph_def(
